@@ -45,11 +45,20 @@ public class Tile {
 
     public void initialize(Tile[][] map) {
         int sum = 0;
+        
+        // North, 2^0
         if(isValid(map, row - 1, col) && map[row - 1][col].isInteractable()) sum += 1;
+        
+        // East, 2^1
         if(isValid(map, row, col + 1) && map[row][col + 1].isInteractable()) sum += 2;
+        
+        // South, 2^2
         if(isValid(map, row + 1, col) && map[row + 1][col].isInteractable()) sum += 4;
+        
+        // West, 2^3
         if(isValid(map, row, col - 1) && map[row][col - 1].isInteractable()) sum += 8;
 
+        // Center tile exception
         if(sum == 15) {
             if(isValid(map, row - 1, col - 1) && !map[row - 1][col - 1].isInteractable()) tile = tileSheet.getSubImage(15, 2);
             else if(isValid(map, row - 1, col + 1) && !map[row - 1][col + 1].isInteractable()) tile = tileSheet.getSubImage(15, 3);
