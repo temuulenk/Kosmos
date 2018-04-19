@@ -14,6 +14,7 @@ public class Tile {
     private int id;
 
     private Image tile;
+    private Image additionalAttachedImage;
 
     private static boolean loadedSpriteSheet = false;
     private static SpriteSheet tileSheet;
@@ -39,7 +40,10 @@ public class Tile {
 
     public void draw() {
         if(id == 1 && tile != null) {
-            tile.draw(x, y);
+            if(tile != null)
+                tile.draw(x, y);
+            if(additionalAttachedImage != null)
+                additionalAttachedImage.draw(x, y + 32);
         }
     }
 
@@ -57,6 +61,18 @@ public class Tile {
         
         // West, 2^3
         if(isValid(map, row, col - 1) && map[row][col - 1].isInteractable()) sum += 8;
+
+
+        // Edge case blocks which requires ground block addition to the bottom
+        if(sum == 0) {
+            additionalAttachedImage = tileSheet.getSubImage(0, 2);
+        }else if(sum == 3) {
+            additionalAttachedImage = tileSheet.getSubImage(3, 2);
+        }else if(sum == 9) {
+            additionalAttachedImage = tileSheet.getSubImage(9, 2);
+        }else if(sum == 11) {
+            additionalAttachedImage = tileSheet.getSubImage(11, 2);
+        }
 
         // Center tile exception
         if(sum == 15) {

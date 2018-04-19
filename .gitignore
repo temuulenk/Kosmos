@@ -1,2 +1,7 @@
 /main/
 /lib/
+/out/
+.classpath
+.project
+README.md
+/.idea/
