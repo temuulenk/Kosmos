@@ -24,7 +24,7 @@ public class Main extends StateBasedGame {
         app.setDisplayMode(1280, 768, false);
         app.setTargetFrameRate(60);
         app.setAlwaysRender(true);
-        app.setShowFPS(false);
+        app.setShowFPS(true);
         app.start();
     }
 
