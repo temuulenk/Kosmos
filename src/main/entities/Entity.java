@@ -1,11 +1,12 @@
 package main.entities;
 
-public abstract class Entity {
+import main.interfaces.Drawable;
 
-	int health, movespeed, attack, defence, experience, level;
-	
-	String name;
-	
+public abstract class Entity implements Drawable {
+
+    protected String name;
+	protected int health, movespeed, attack, defence, experience, level;
+
 	public Entity() {
 		this("Monster", 10, 30, 3, 0, 0, 0);
 	}
@@ -14,9 +15,7 @@ public abstract class Entity {
 		this(name, 10, 30, 3, 0, 0, 0);
 	}
 	
-	public Entity(String name, int health, int movespeed,
-					int attack, int defence, int experience,
-					int level) {
+	public Entity(String name, int health, int movespeed, int attack, int defence, int experience, int level) {
 		this.name = name;
 		this.health = health;
 		this.movespeed = movespeed;
@@ -26,19 +25,20 @@ public abstract class Entity {
 		this.level = level;
 	}
 	
-	public String getName() 	{return name;}
-	public int getHealth() 		{return health;}
-	public int getMovespeed()	{return movespeed;}
-	public int getAttack()		{return attack;}
-	public int getDefence()		{return defence;}
-	public int getExperience()	{return experience;}
-	public int getLevel()		{return level;}
+	public String getName() 	{ return name; }
+	public int getHealth() 		{ return health; }
+	public int getMovespeed()	{ return movespeed; }
+	public int getAttack()		{ return attack; }
+	public int getDefence()		{ return defence; }
+	public int getExperience()	{ return experience; }
+	public int getLevel()		{ return level; }
 	
-	public void setName(String newName) {name = newName;}
-	public void setHealth(int newHP)	{health = newHP;}
-	public void setMovespeed(int newMS)	{movespeed = newMS;}
-	public void setAttack(int newATK)	{attack = newATK;}
-	public void setDefence(int newDEF)	{defence = newDEF;}
-	public void setExperience(int newXP){experience = newXP;}
-	public void setLevel(int newLV)		{level = newLV;}
+	public void setName(String name) 			{ this.name = name; }
+	public void setHealth(int health)			{ this.health = health; }
+	public void setMovespeed(int movespeed)		{ this.movespeed = movespeed; }
+	public void setAttack(int attack)			{ this.attack = attack; }
+	public void setDefence(int defence)			{ this.defence = defence; }
+	public void setExperience(int experience)	{ this.experience = experience; }
+	public void setLevel(int level)				{ this.level = level; }
+
 }

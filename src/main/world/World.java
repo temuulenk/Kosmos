@@ -1,11 +1,12 @@
 package main.world;
 
+import main.interfaces.Drawable;
 import main.world.harvestable.Tree;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 
-public class World {
+public class World implements Drawable {
 
     private GameContainer container;
     private Input input;
@@ -46,8 +47,9 @@ public class World {
 
     }
 
+    @Override
     public void draw() {
-        container.getGraphics().setColor(new Color(1, 1, 1, .3F));
+//        container.getGraphics().setColor(new Color(1, 1, 1, .3F));
         for(int row=0; row<map.length; row++) {
             for(int col=0; col<map[0].length; col++) {
                 map[row][col].draw();

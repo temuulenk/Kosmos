@@ -9,7 +9,7 @@ public class Tree extends Harvestable {
         super(0);
 
         try {
-            image = new Image("res/harvestables/tree.png");
+            image = new Image("res/harvestable/tree.png");
         }catch(SlickException e) {
             System.out.println(e.getMessage());
         }
@@ -18,11 +18,16 @@ public class Tree extends Harvestable {
 
     @Override
     public void draw() {
-        image.draw(x, y - image.getHeight() + 24);
+
     }
 
     @Override
     public void harvest() {
+
+    }
+
+    @Override
+    public void onDeath() {
 
     }
 
