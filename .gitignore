@@ -5,4 +5,8 @@
 .project
 README.md
 /.idea/
+<<<<<<< HEAD
 /bin/
+=======
+.idea
+>>>>>>> 611f36b3d511a24177461753d2b1c11bb6ae4840
