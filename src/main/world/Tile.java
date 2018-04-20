@@ -1,5 +1,6 @@
 package main.world;
 
+import main.world.harvestable.Harvestable;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -18,6 +19,9 @@ public class Tile {
 
     private static boolean loadedSpriteSheet = false;
     private static SpriteSheet tileSheet;
+
+    private Harvestable resource;
+
 
     public Tile(int row, int col, int id) {
         this.row = row;
@@ -39,11 +43,16 @@ public class Tile {
     }
 
     public void draw() {
-        if(id == 1 && tile != null) {
+        if(id == 1) {
             if(tile != null)
                 tile.draw(x, y);
             if(additionalAttachedImage != null)
                 additionalAttachedImage.draw(x, y + 32);
+
+            if(resource != null) {
+                resource.draw();
+            }
+
         }
     }
 
@@ -51,16 +60,16 @@ public class Tile {
         int sum = 0;
         
         // North, 2^0
-        if(isValid(map, row - 1, col) && map[row - 1][col].isInteractable()) sum += 1;
+        if(isValid(map, row - 1, col) && map[row - 1][col].isInteractive()) sum += 1;
         
         // East, 2^1
-        if(isValid(map, row, col + 1) && map[row][col + 1].isInteractable()) sum += 2;
+        if(isValid(map, row, col + 1) && map[row][col + 1].isInteractive()) sum += 2;
         
         // South, 2^2
-        if(isValid(map, row + 1, col) && map[row + 1][col].isInteractable()) sum += 4;
+        if(isValid(map, row + 1, col) && map[row + 1][col].isInteractive()) sum += 4;
         
         // West, 2^3
-        if(isValid(map, row, col - 1) && map[row][col - 1].isInteractable()) sum += 8;
+        if(isValid(map, row, col - 1) && map[row][col - 1].isInteractive()) sum += 8;
 
 
         // Edge case blocks which requires ground block addition to the bottom
@@ -76,10 +85,10 @@ public class Tile {
 
         // Center tile exception
         if(sum == 15) {
-            if(isValid(map, row - 1, col - 1) && !map[row - 1][col - 1].isInteractable()) tile = tileSheet.getSubImage(15, 2);
-            else if(isValid(map, row - 1, col + 1) && !map[row - 1][col + 1].isInteractable()) tile = tileSheet.getSubImage(15, 3);
-            else if(isValid(map, row + 1, col - 1) && !map[row + 1][col - 1].isInteractable()) tile = tileSheet.getSubImage(15, 4);
-            else if(isValid(map, row + 1, col + 1) && !map[row + 1][col + 1].isInteractable()) tile = tileSheet.getSubImage(15, 5);
+            if(isValid(map, row - 1, col - 1) && !map[row - 1][col - 1].isInteractive()) tile = tileSheet.getSubImage(15, 2);
+            else if(isValid(map, row - 1, col + 1) && !map[row - 1][col + 1].isInteractive()) tile = tileSheet.getSubImage(15, 3);
+            else if(isValid(map, row + 1, col - 1) && !map[row + 1][col - 1].isInteractive()) tile = tileSheet.getSubImage(15, 4);
+            else if(isValid(map, row + 1, col + 1) && !map[row + 1][col + 1].isInteractive()) tile = tileSheet.getSubImage(15, 5);
             else tile = tileSheet.getSubImage(15, 1);
         }
         else {
@@ -88,11 +97,18 @@ public class Tile {
 
     }
 
+    public void attachResource(Harvestable resource) {
+        this.resource = resource;
+
+        resource.setPosition(x, y);
+
+    }
+
     private boolean isValid(Tile[][] map, int row, int col) {
         return row >= 0 && row < map.length && col >= 0 && col < map[0].length;
     }
 
-    private boolean isInteractable() {
+    private boolean isInteractive() {
         return id != 0;
     }
 
