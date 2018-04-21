@@ -17,7 +17,6 @@ public class World implements Drawable {
 
     private Tile[][] map;
 
-
     private boolean mouseDown = false;
     private int startX = -1;
     private int startY = -1;

@@ -86,7 +86,9 @@ public class Tile implements Drawable {
 
         // Center tile exception
         if(sum == 15) {
-            if(isValid(map, row - 1, col - 1) && !map[row - 1][col - 1].isCollidable()) tile = tileSheet.getSubImage(15, 2);
+            if(isValid(map, row - 1, col - 1) && isValid(map, row + 1, col + 1) && !map[row - 1][col - 1].isCollidable() && !map[row + 1][col + 1].isCollidable()) tile = tileSheet.getSubImage(15, 6);
+            else if(isValid(map, row - 1, col + 1) && isValid(map, row + 1, col - 1) && !map[row - 1][col + 1].isCollidable() && !map[row + 1][col - 1].isCollidable()) tile = tileSheet.getSubImage(15, 7);
+            else if(isValid(map, row - 1, col - 1) && !map[row - 1][col - 1].isCollidable()) tile = tileSheet.getSubImage(15, 2);
             else if(isValid(map, row - 1, col + 1) && !map[row - 1][col + 1].isCollidable()) tile = tileSheet.getSubImage(15, 3);
             else if(isValid(map, row + 1, col - 1) && !map[row + 1][col - 1].isCollidable()) tile = tileSheet.getSubImage(15, 4);
             else if(isValid(map, row + 1, col + 1) && !map[row + 1][col + 1].isCollidable()) tile = tileSheet.getSubImage(15, 5);
@@ -109,7 +111,7 @@ public class Tile implements Drawable {
         return row >= 0 && row < map.length && col >= 0 && col < map[0].length;
     }
 
-    private boolean isCollidable() {
+    public boolean isCollidable() {
         return id != 0;
     }
 

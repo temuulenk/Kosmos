@@ -2,7 +2,10 @@ package main.world.harvestable;
 
 import main.interfaces.Damageable;
 import main.interfaces.Drawable;
+import main.resources.Resource;
 import org.newdawn.slick.Image;
+
+import java.util.ArrayList;
 
 public abstract class Harvestable implements Drawable, Damageable {
 
@@ -15,9 +18,11 @@ public abstract class Harvestable implements Drawable, Damageable {
 
     protected int health;
 
+    protected Loot loot;
 
     public Harvestable(int id) {
         this.id = id;
+        this.loot = new Loot();
     }
 
     public abstract void harvest();
@@ -29,7 +34,7 @@ public abstract class Harvestable implements Drawable, Damageable {
 
     @Override
     public void dealDamage(Damageable entity) {
-
+        return;
     }
 
     @Override

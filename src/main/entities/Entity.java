@@ -33,7 +33,7 @@ public abstract class Entity implements Drawable {
 	public int getExperience()	{ return experience; }
 	public int getLevel()		{ return level; }
 	
-	public void setName(String name) 			{ this.name = name; }
+	public void setName(String name) 		    { this.name = name; }
 	public void setHealth(int health)			{ this.health = health; }
 	public void setMovespeed(int movespeed)		{ this.movespeed = movespeed; }
 	public void setAttack(int attack)			{ this.attack = attack; }

@@ -1,5 +1,6 @@
 package main.world.harvestable;
 
+import main.resources.Resource;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -7,6 +8,8 @@ public class Tree extends Harvestable {
 
     public Tree() {
         super(0);
+
+        loot.addResource(Resource.WOOD, 3, 5, 1);
 
         try {
             image = new Image("res/harvestable/tree.png");
@@ -18,7 +21,7 @@ public class Tree extends Harvestable {
 
     @Override
     public void draw() {
-
+        image.draw(x, y);
     }
 
     @Override
@@ -28,7 +31,14 @@ public class Tree extends Harvestable {
 
     @Override
     public void onDeath() {
+        
+    }
 
+
+    @Override
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y - image.getHeight() + 24;
     }
 
 }
