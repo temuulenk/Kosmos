@@ -34,11 +34,10 @@ public class Tree extends Harvestable {
         
     }
 
-
     @Override
     public void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y - image.getHeight() + 24;
+        this.x = x + 2;
+        this.y = y - image.getHeight() + 25;
     }
 
 }

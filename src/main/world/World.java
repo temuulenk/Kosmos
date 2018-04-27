@@ -52,7 +52,6 @@ public class World implements Drawable {
         for(int row=0; row<map.length; row++) {
             for(int col=0; col<map[0].length; col++) {
                 map[row][col].draw();
-
 //                container.getGraphics().drawLine(col * tileSize + 4, row * tileSize, col * tileSize + 28, row * tileSize);
 //                container.getGraphics().drawLine(col * tileSize, row * tileSize + 4, col * tileSize, row * tileSize + 28);
 
@@ -108,14 +107,14 @@ public class World implements Drawable {
             }
         }
 
-        if(input.isMousePressed(1)) {
+        if(input.isMouseButtonDown(1)) {
             int mx = input.getMouseX() / 32;
             int my = input.getMouseY() / 32;
-            map[my][mx].attachResource(new Tree());
+            if(!map[my][mx].hasResource() && map[my][mx].getId() != 0) {
+                map[my][mx].attachResource(new Tree());
+            }
 //            map[my][mx] = new Tile(my, mx, 0);
 //            updateTile(my, mx);
-
-
         }
 
     }

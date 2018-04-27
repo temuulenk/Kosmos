@@ -1,8 +1,9 @@
 package main.entities;
 
+import main.interfaces.Damageable;
 import main.interfaces.Drawable;
 
-public abstract class Entity implements Drawable {
+public abstract class Entity implements Drawable, Damageable {
 
     protected String name;
 	protected int health, movespeed, attack, defence, experience, level;
@@ -24,6 +25,21 @@ public abstract class Entity implements Drawable {
 		this.experience = experience;
 		this.level = level;
 	}
+
+	@Override
+	public void dealDamage(Damageable entity) {
+
+	}
+
+	@Override
+	public void takeDamage(Damageable source) {
+
+	}
+
+	@Override
+	public void onDeath() {
+
+	}
 	
 	public String getName() 	{ return name; }
 	public int getHealth() 		{ return health; }
@@ -35,7 +51,7 @@ public abstract class Entity implements Drawable {
 	
 	public void setName(String name) 		    { this.name = name; }
 	public void setHealth(int health)			{ this.health = health; }
-	public void setMovespeed(int movespeed)		{ this.movespeed = movespeed; }
+	public void setMovespeed(int movespeed)	    { this.movespeed = movespeed; }
 	public void setAttack(int attack)			{ this.attack = attack; }
 	public void setDefence(int defence)			{ this.defence = defence; }
 	public void setExperience(int experience)	{ this.experience = experience; }

@@ -115,6 +115,10 @@ public class Tile implements Drawable {
         return id != 0;
     }
 
+    public boolean hasResource() {
+        return resource != null;
+    }
+
     public int getId() {
         return id;
     }
